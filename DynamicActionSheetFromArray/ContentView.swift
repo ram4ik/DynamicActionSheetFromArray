@@ -9,8 +9,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var showActionSheet: Bool = false
+    var titles: [String] = ["1", "2", "3", "4"]
+    var buttonsArray: NSMutableArray = NSMutableArray()
     var body: some View {
-        Text("Hello World")
+        Button("Action Sheet") {
+            self.showActionSheet = true
+        }.actionSheet(isPresented: $showActionSheet) {
+            ActionSheet(title: Text("ACTION"), message: Text("Select an option"), buttons: [.default(Text("First Button"), action: {
+                print("First")
+            }), .default(Text("Second Button")), .cancel()])
+        }
     }
 }
 
